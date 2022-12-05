@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12 super_search">
+      <a href="/">
+        <h1 class="text-center">MOVIE SEARCH</h1>
+        <h2 class="text-info text-center">
+          Title & Description Youtube Generate
+        </h2>
+      </a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-3"></div>
+    <div class="col-xs-6">
+      <div class="form-group">
+        <input
+          ng-model="searchMovies"
+          ng-keyup="$event.keyCode === 13 && search()"
+          type="text"
+          class="form-control input-lg"
+          placeholder="Search Movies"
+        />
+      </div>
+    </div>
+    <div class="col-xs-3"></div>
+  </div>
+  <!-- /.row -->
+  <div class="row">
+    <div class="col-xs-1"></div>
+
+    <div class="col-xs-10">
+      <div class="row">
+        <div class="col-xs-3"></div>
+        <div class="col-xs-6">
+          <ul class="nav nav-pills nav-justified">
+            <li ng-click="nowPlaying()">
+              <a data-toggle="tab" href="#nowPlaying">Now Playing</a>
+            </li>
+            <li ng-click="popularMovies()">
+              <a data-toggle="tab" href="#popular">Popular</a>
+            </li>
+            <li ng-click="upcomingMovies()">
+              <a data-toggle="tab" href="#upcoming">Upcoming</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-xs-3"></div>
+      </div>
+
+      <div class="tab-content">
+        <div id="nowPlaying" class="tab-pane fade in active">
+          <div class="flex_parent">
+            <div ng-repeat="movie in now_playing">
+              <a ui-sref="movie({id: movie.id})">
+                <!-- This performs something similar to the $state.go(...) code -->
+                <img
+                  class="movie_poster"
+                  ng-if="movie.poster_path"
+                  ng-src="https://image.tmdb.org/t/p/w154/{{ movie.poster_path }}"
+                  alt="{{ movie.title }} poster"
+                  title="{{ movie.title }} poster"
+                />
+              </a>
+              <div class="now-play">{{ movie.title }}</div>
+            </div>
+          </div>
+        </div>
+        <div id="popular" class="tab-pane fade">
+          <div class="flex_parent">
+            <div ng-repeat="movie in popular">
+              <a ui-sref="movie({id: movie.id})">
+                <!-- This performs something similar to the $state.go(...) code -->
+                <img
+                  class="movie_poster"
+                  ng-if="movie.poster_path"
+                  ng-src="https://image.tmdb.org/t/p/w154/{{ movie.poster_path }}"
+                  alt="{{ movie.title }} poster"
+                  title="{{ movie.title }} poster"
+                />
+              </a>
+              <div class="now-play">{{ movie.title }}</div>
+            </div>
+          </div>
+        </div>
+        <div id="upcoming" class="tab-pane fade">
+          <div class="flex_parent">
+            <div ng-repeat="movie in upcoming">
+              <a ui-sref="movie({id: movie.id})">
+                <!-- This performs something similar to the $state.go(...) code -->
+                <img
+                  class="movie_poster"
+                  ng-if="movie.poster_path"
+                  ng-src="https://image.tmdb.org/t/p/w154/{{ movie.poster_path }}"
+                  alt="{{ movie.title }} poster"
+                  title="{{ movie.title }} poster"
+                />
+              </a>
+              <div class="now-play">{{ movie.title }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.tab-content -->
+    </div>
+
+    <div class="col-xs-1"></div>
+  </div>
+  <!-- /.row -->
+</div>

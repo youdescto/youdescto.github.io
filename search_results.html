@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-4">
+      <a href="#"
+        ><button
+          class="btn btn-default search_again"
+          type="button"
+          name="button"
+        >
+          < Back to Homes
+        </button></a
+      >
+    </div>
+    <div class="col-xs-4">
+      <div class="form-group">
+        <input
+          ng-model="searchMovies"
+          ng-keyup="$event.keyCode == 13 && search()"
+          type="text"
+          class="form-control input-lg"
+          placeholder="Search Movies"
+        />
+      </div>
+    </div>
+    <div class="col-xs-4"></div>
+  </div>
+  <!-- /.row -->
+  <div class="row">
+    <div class="col-xs-12 text-center">
+      <h1 class="movies_found" ng-show="movies.length > 0">Movies found:</h1>
+    </div>
+  </div>
+
+  <hr />
+
+  <div class="row">
+    <div class="flex_parent">
+      <div ng-repeat="movie in movies">
+        <a ui-sref="movie({id: movie.id})">
+          <!-- This performs something similar to the $state.go(...) code -->
+          <img
+            class="movie_poster"
+            ng-if="movie.poster_path"
+            ng-src="https://image.tmdb.org/t/p/w154/{{ movie.poster_path }}"
+            alt="{{ movie.title }} poster"
+          />
+          <figcaption class="now-play text-center" ng-if="movie.poster_path">
+            {{ movie.title }}
+          </figcaption>
+        </a>
+      </div>
+      <h1 ng-hide="movies.length > 0" class="text-center">No movies found</h1>
+    </div>
+  </div>
+  <!-- /.row -->
+</div>
+<!-- /.container -->
