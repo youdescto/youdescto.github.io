@@ -1,0 +1,7 @@
+ul.molis {
+  display: flex;
+  list-style: none;
+}
+li.molist {
+  padding: 10px;
+}
